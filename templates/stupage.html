@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+{#    <link rel="icon" href="http://v3.bootcss.com/favicon.ico">#}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 必须在引入bootstarp.js之前引入 -->
+    <script src="../static/jquery-3.3.1.min.js"></script>
+
+    <script src="../static/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+
+   <link href="../static/css/index.css" rel="stylesheet">
+
+    <title>在线考试系统</title>
+</head>
+<body>
+<style>
+     *{
+        color: #745959;
+      }
+      .main{
+        padding-left:3%;
+        display: grid;
+        grid-template-columns: 45% auto;
+      }
+      button{
+        margin:1em;
+        margin-left:5em;
+      }
+      img{
+        height:35em;
+        width:45em;
+        transition:all 0.5s ease;
+      }
+      img:hover{
+        height:40em;
+        width:50em;
+        transition:all 0.5s ease;
+      }
+      .prof button[type=submit]:hover{
+        background: #87ff9b;
+      }
+      .student button[type=submit]:hover{
+        background: #a3d5ff;
+     }
+</style>
+<nav class="navbar navbar-light" style="background-color: #5d9cec">
+    <a class="navbar-brand" style="color: #0b2e13;padding-left: 5em;">
+        欢迎来到在线考试系统
+    </a>
+    <a href="/logout/"><button data-target="#myModal" data-toggle="modal" class="btn btn-primary">退出</button></a>
+        <li style="position: fixed;right: 80px; font-size: 30px;color: #0b2e13">{{ student.name }}</li>
+</nav>
+<div class="container">
+
+  <br>
+  <!-- Nav pills -->
+  <ul class="nav nav-pills" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="pill" href="#home">个人信息</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#menu1">考试信息</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#menu2">成绩查询</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="home" class="container tab-pane active"><br>
+      <h3>个人信息</h3>
+
+        <table class="table">
+    <thead>
+      <tr>
+        <th>属性</th>
+        <th>信息</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>学号</td>
+        <td>{{ student.id }}</td>
+
+      </tr>
+      <tr class="table-primary">
+        <td>姓名</td>
+        <td>{{ student.name }}</td>
+
+      </tr>
+      <tr class="table-success">
+        <td>性别</td>
+        <td>{{ student.sex }}</td>
+
+      </tr>
+      <tr class="table-danger">
+        <td>学院</td>
+        <td>{{ student.dept }}</td>
+
+      </tr>
+
+       <tr class="table-success">
+        <td>专业</td>
+        <td>{{ student.major }}</td>
+
+      </tr>
+
+      <tr class="table-warning">
+        <td>邮箱地址</td>
+        <td>{{ student.email }}</td>
+
+      </tr>
+      <tr class="table-active">
+        <td>出生日期</td>
+        <td>{{ student.birth }}</td>
+
+      </tr>
+
+    </tbody>
+  </table>
+    </div>
+
+    <div id="menu1" class="container tab-pane fade"><br>
+      <h3>考试信息</h3>
+      <p></p>
+        <table class="table">
+    <thead>
+      <tr>
+          <th>学号</th>
+        <th>姓名</th>
+        <th>考试科目</th>
+          <th>考试时间</th>
+          <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+    {#   遍历字典  paper #}
+    {% for paper1 in paper %}
+
+     <tr class="table-info">
+          <td>{{ student.id }}</td>
+          <td>{{ student.name }}</td>
+          <td>{{ paper1.subject }}{{ paper2.subject }}</td>
+          <td>{{ paper1.examtime }} {{ paper2.examtime }}</td>
+          <td>
+              <a href="/startExam/?sid={{ student.id }}&subject={{ paper1.subject }}">
+              <button class="btn btn-primary" id="toExam+{{ paper1.subject }}">开始考试</button>
+             </a>
+          </td>
+      </tr>
+    {% endfor %}
+
+
+
+    </tbody>
+  </table>
+    </div>
+
+    <div id="menu2" class="container tab-pane fade"><br>
+      <h3>考试成绩</h3>
+      <p></p>
+        <table class="table">
+        <thead>
+          <tr>
+            <th>姓名</th>
+            <th>科目</th>
+            <th>成绩</th>
+
+          </tr>
+        </thead>
+    <tbody>
+
+    {% for grade1 in grade %}
+        <tr class="table-primary">
+        <td>{{ student.name }}</td>
+        <td>{{ grade1.subject }}</td>
+        <td>{{ grade1.grade }}</td>
+
+      </tr>
+    {% endfor %}
+
+
+
+
+    </tbody>
+  </table>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

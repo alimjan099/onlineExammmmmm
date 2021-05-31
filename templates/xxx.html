@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="UTF-8">
+{#    <link rel="icon" href="http://v3.bootcss.com/favicon.ico">#}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 必须在引入bootstarp.js之前引入 -->
+    <script src="../static/jquery-3.3.1.min.js"></script>
+
+    <script src="../static/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+
+   <link href="../static/css/index.css" rel="stylesheet">
+
+    <title>在线考试系统</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font: 14px/1.4 Microsoft YaHei, SimSun, Arial;
+    }
+
+    .errorwarp {
+        padding-top: 100px;
+        text-align: center;
+    }
+
+    p {
+        line-height: 94px;
+        font-size: 18px;
+        color: #14191e;
+    }
+
+    a {
+        font-size: 18px;
+        color: #f01414;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        text-decoration: none;
+    }
+
+    .feedback {
+        font-size: 14px;
+        margin-top: 38px;
+    }
+</style>
+{#<script>#}
+{#window.onload=function (){#}
+{#    var jsreferrer = document.getElementById('jsreferrer');#}
+{#    var referrer = document.referrer;#}
+{#    var url = '';#}
+{#    #}
+{#    if( referrer){#}
+{#        url = referrer.split('//')[1].split('/')[0];#}
+{#    }#}
+{#    #}
+{#    if( url == 'www.imooc.com' || url == 'www.mukewang.com'){#}
+{#        jsreferrer.setAttribute('href', document.referrer)#}
+{#        jsreferrer.innerHTML = '返回上一页';#}
+{#    }#}
+{##}
+{#</script>#}
+
+</head>
+<nav class="navbar navbar-light" style="background-color: #5d9cec">
+    <div style="nav-left: initial">
+            <a class="navbar-brand" style="color: #0b2e13;padding-left: 5em;">欢迎来到在线考试系统</a>
+        </div>
+    <div style="nav-right: initial">
+            <b>当前时间：<div id="jnkc"></div></b>
+    </div>
+</nav>
+<body>
+
+<div class='errorwarp'>
+    <p>Sorry，找不到你想要的页面</p>
+    <h2>
+    密码错误或账户不存在
+</h2>
+<h3>点此回到首页</h3>
+<a href="/logout/"><button data-target="#myModal" data-toggle="modal" class="btn btn-primary">退出</button></a>
+</div>
+<script>setInterval("jnkc.innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());",1000);
+            </script>
+</body>
+</html>
